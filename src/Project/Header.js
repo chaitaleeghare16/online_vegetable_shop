@@ -59,7 +59,7 @@ export class Header extends Component {
                      <Route path='/admin/:name' exact component={Admin}></Route> 
                      <Route path='/login' exact component={LogIn}/>
                     <Route path="/signup" exact component={SignUp}/>
-                    <Route path="/" exact component={HomePage}/>
+                    <Route path="/" exact component={Home}/>
 
                      </Switch>
 
