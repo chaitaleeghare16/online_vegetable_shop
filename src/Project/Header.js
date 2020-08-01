@@ -1,0 +1,74 @@
+import React, { Component } from 'react'
+import  './Styles/Header.css'
+import logo from './Images/logo.jpeg'
+import { Link, BrowserRouter,Route, Switch} from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+ import Cart from './Cart'
+import AboutUs from './AboutUs'
+import MyOrder from './MyOrder'
+import HomePage from './HomePage'
+import LogIn from './LogIn'
+import SignUp from './SignUp'
+import Footer from './Footer'
+
+
+
+export class Header extends Component {
+    render() {
+        return (
+            <BrowserRouter>
+            <div id="header">
+            
+            
+            
+
+                <img id='logo' src={logo} alt="logo"></img> 
+
+                <span id='home'><Link className='link' to='/'>Home</Link></span>
+                <span id='homeicon'><FontAwesomeIcon  className='homeicon' icon="home" size='1x' /></span>
+
+                <span  id='aboutus'><Link className='link' to='/aboutus'>AboutUs</Link></span>
+                <span id='infoicon'><FontAwesomeIcon  className='infoicon' icon="info" size='xs' /></span> 
+
+                <span  id='myorder'><Link className='link' to='/myorder'>MyOrder</Link></span>
+                 <span id='ordericon'><FontAwesomeIcon  className='ordericon' icon="list-alt" size='1x' /></span> 
+
+
+                <span  id='cart'><Link className='link' to='/cart'>Cart</Link></span>
+                <span id='carticon'><FontAwesomeIcon  className='carticon' icon="shopping-cart" size='1x' /></span> 
+
+                {/* <span id='logout'>login</span>  */}
+                <span  id='login'><Link className='link' to='/login'>Login</Link></span>
+
+                <span  id='signup'><Link className='link' to='/signup'>SignUp</Link></span>
+
+
+
+                
+                
+            </div>
+
+            <Switch>
+                     <Route path='/cart' exact component={Cart}></Route>
+                     <Route path='/aboutus' exact component={AboutUs}></Route> 
+                     <Route path='/myorder' exact component={MyOrder}></Route> 
+                     <Route path='/' exact component={HomePage}></Route> 
+                     <Route path='/login' exact component={LogIn}/>
+                    <Route path="/signup" exact component={SignUp}/>
+
+                     </Switch>
+
+                     <Footer/>
+               
+           
+                    
+                   
+                   
+                </BrowserRouter>  
+
+           
+        )
+    }
+}
+
+export default Header

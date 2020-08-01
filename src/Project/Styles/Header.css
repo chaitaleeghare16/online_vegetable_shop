@@ -1,0 +1,93 @@
+
+#header
+{
+  position: -webkit-sticky;
+  position: sticky;
+    top:0;
+    background-color:hsla(120, 100%, 25%, 0.726);
+  
+  font-size: 20px;
+  font-display: gh;
+  width:100%;
+ 
+  
+}
+
+#logo
+{
+  
+    width:60px;
+    margin-top:-30px;
+    margin-left:5px;
+}
+
+#home
+{
+    margin-left:40px;
+    margin-top:10px;
+}
+
+.homeicon
+{
+  /* margin-left:1px; */
+  
+  margin-top:30px;
+
+}
+
+#aboutus
+{
+    margin-left:40px;
+    
+    font-style: italic;
+}
+#infoicon
+{
+   margin-left:6px;
+}
+
+#myorder
+{
+    margin-left:40px;
+  
+    font-style: italic;
+}
+#ordericon
+{
+    margin-left:10px;
+}
+
+#cart
+{
+    margin-left:600px; 
+  
+}
+
+#carticon
+{
+    margin-left:5px;
+ 
+}
+
+#login
+{
+
+ margin-left: 65px;
+ font-style: italic;
+
+}
+
+.link{
+    color:black
+}
+#container
+{
+    color:'pink'
+}
+
+
+#signup
+{
+    margin-left: 30px;
+}
+
