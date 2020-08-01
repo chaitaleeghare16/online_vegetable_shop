@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'; // to activate bootstrap
 import './Project/FontAwesomeIcon/Icon' // to activate icon
 
 import Header from './Project/Header';
+import Admin from './Project/Admin';
 
 
 ReactDOM.render(

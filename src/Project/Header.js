@@ -6,10 +6,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
  import Cart from './Cart'
 import AboutUs from './AboutUs'
 import MyOrder from './MyOrder'
-import HomePage from './HomePage'
+
 import LogIn from './LogIn'
 import SignUp from './SignUp'
 import Footer from './Footer'
+import Admin from './Admin'
+import Home from './Home'
+import HomePage from './HomePage'
 
 
 
@@ -40,7 +43,7 @@ export class Header extends Component {
                 {/* <span id='logout'>login</span>  */}
                 <span  id='login'><Link className='link' to='/login'>Login</Link></span>
 
-                <span  id='signup'><Link className='link' to='/signup'>SignUp</Link></span>
+                <span  id='logout'><Link className='link' to='/login'>LogOut</Link></span>
 
 
 
@@ -52,9 +55,11 @@ export class Header extends Component {
                      <Route path='/cart' exact component={Cart}></Route>
                      <Route path='/aboutus' exact component={AboutUs}></Route> 
                      <Route path='/myorder' exact component={MyOrder}></Route> 
-                     <Route path='/' exact component={HomePage}></Route> 
+                     <Route path='/home/:name' exact component={HomePage}></Route> 
+                     <Route path='/admin/:name' exact component={Admin}></Route> 
                      <Route path='/login' exact component={LogIn}/>
                     <Route path="/signup" exact component={SignUp}/>
+                    <Route path="/" exact component={HomePage}/>
 
                      </Switch>
 
@@ -65,6 +70,9 @@ export class Header extends Component {
                    
                    
                 </BrowserRouter>  
+
+
+
 
            
         )

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import './Styles/LogIn.css'
 import { Link, BrowserRouter, Route, NavLink, Switch } from 'react-router-dom'
-import SignUp from './SignUp'
-import HomePage from './HomePage'
+
+
 
 export class LogIn extends Component {
   constructor(props) {
@@ -28,28 +28,62 @@ export class LogIn extends Component {
     const username = this.state.username;
     const password = this.state.password;
     const userdetail = this.state.allUsersDetails;
+
+   
     
     var flag=0
+    var invaliduser=0;
+    var name=''
    for(var user of userdetail)
    {
+      
+   if( username === user.Email && password === user.Password && user.isAdmin === false) 
+   {
+      flag=1;
+      name = user.FirstName;
+      break;
+      
 
-   if( username === user.Email && password === user.Password) 
-   {
-      flag=1
    }
-  
-   }
-   if(flag==1)
+
+    if( username === user.Email && password === user.Password && user.isAdmin === true) 
    {
+     flag =2;
+     name = user.FirstName;
+     break;
+   }
+
    
-    this.props.history.push('/')
    }
-   else{
- 
-    this.props.history.push('/login')
 
+   if(flag===1)
+   {
+       
+    this.props.history.push(`/home/${name}`)
+    
+    
    }
+  if(flag===2)
+ 
+   {
+      this.props.history.push(`/admin/${name}`)
+   }
+
+   if(flag==0)
+   {
+     alert('login failed')
+   }
+
+
+   
+  
+   
      
+    this.setState({
+      username:'',
+      password:'',
+
+    })
   
     
 
@@ -62,16 +96,10 @@ export class LogIn extends Component {
 
      
   }
-  validLoginForm=()=>
+  validLoginForm=(e)=>
   {
-    // alert(this.state.username+"*")
-    // if(this.state.username.length == 0 && this.state.password.length == 0)
-    // {
-    //     this.setState({error:{usernameerror:'username should not be empty'},
-    //     error:{passworderror:'password should not be empty'}
-    //   })
-    //     // alert(this.state.error.usernameerror)
-    // }
+    
+    
      if(this.state.username.length == 0)
     {
       this.setState({error:{usernameerror:'uername should not be empty'}})
@@ -84,10 +112,7 @@ export class LogIn extends Component {
     }
     
     
-    else{
-      alert('logindetails are wrong')
-    }
-
+    
     this.verifyUser();
 
 
@@ -123,7 +148,8 @@ export class LogIn extends Component {
                 </span>
                 <pre  style={{ color: 'red' }}>{this.state.error.passworderror}</pre>
 
-                <button type="button" className='btn btn-primary' onClick={this.validLoginForm}>LogIn</button>
+                <button type="button" className='btn btn-primary' value={this.state.username} onClick={this.validLoginForm}>LogIn</button>
+                <div><b>need an account? click here </b> <span><Link to='/signup'>SignUp</Link></span></div>
                
                 
                 

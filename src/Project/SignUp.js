@@ -159,7 +159,7 @@ export class SignUp extends Component {
 
     render() {
         return (
-            <div className='container'>
+            <div className='box'    i>
                 <form autoComplete='off'>
                     <div className='col-md-10 form-group'>
                         <label className='float-left block-text text-darken-2 s' > First name <span aria-hidden='true' style={{ color: 'red' }}>*</span> </label>

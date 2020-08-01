@@ -6,6 +6,7 @@ import Bootstrap from './Bootstrap'
 import LogIn from './Project/LogIn';
 import SignUp from './Project/SignUp';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
+import Admin from './Project/Admin';
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
       
       
      
-      
+     
       
     </div>
   );
