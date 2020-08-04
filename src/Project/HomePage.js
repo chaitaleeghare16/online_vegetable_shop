@@ -1,58 +1,105 @@
 import React, { Component } from 'react'
-import onion from './Images/onion.jpeg'
-import tomato from './Images/tomato.jpeg'
-import potato from './Images/potato.jpeg'
+import Cart from './Cart';
+import Product from './Product';
 
 
-import './Styles/HomePage.css'
-
-export class HomePage extends Component {
+const products = [
+    {
     
-
+        id:1,
+        name:'onion',
+        image:<img src='onion.jpeg' alt="onion"/> ,
+        price:19,
+        stock:'In Stock',
+        units:0
        
+        
     
-
+    },
+    {
     
+        id:2,
+        name:'tomato',
+        image:<img src='tomato.jpeg'  alt="tomato"/>, 
+        price:40, 
+        stock:'In Stock',
+        units:0
+      
+        
+    },
+    {
+    
+        id:3,
+        name:'potato',
+        image:<img src='potato.jpeg' alt="potato"/>, 
+        price:60, 
+        stock:'In Stock',
+        units:0
+        
+    }
+    
+    ]
+export class Home extends Component {
+    constructor() {
+        super()
+    
+        this.state = {
+           
+             cart:[
+                 {  
+                     
+                    name:'onion',           
+                    units:1
+                     
+                 }
+             ]
+        }
+    }
 
+    handleAddData(product)
+    {
+
+        // console.log(product)
+        //filter method return array
+        const already_present_item_in_cart = this.state.cart.filter(cartData=>{ return (cartData.id === product.id)});
+        
+        
+            if(already_present_item_in_cart.length>0)
+       {
+        const not_present_item_in_cart = this.state.cart.filter(cartData=> { return (cartData.id !== product.id)})
+
+           
+        const updatedUnits = {
+            ...already_present_item_in_cart[0],units:already_present_item_in_cart[0].units +product.units}
+      
+
+               this.setState({
+                   cart:[...not_present_item_in_cart,updatedUnits]
+
+               });
+        }
+
+           else{
+               this.setState({cart:[...this.state.cart,product]});
+           }
+       }
+    
     render() {
-
-    let Username_Of_LoggedIn_User_Is =this.props.match.params.name;
+        let Username_Of_LoggedIn_User_Is =this.props.match.params.name;
   
         
-        
-       return (
-           
-
-            <div id='content' style={{textAlign:'left'}}>
-                <h3 style={{fontStyle:'italic',color:'red'}}>Welcome {Username_Of_LoggedIn_User_Is}</h3>
-            
-                
-        
-                <img src={onion} alt="onion" id='onion'></img>
-                <span style={{marginLeft:'60px'}}>Onion
-                <div style={{marginLeft:'130px',marginTop:'-40px'}}><span>(Rs 19.00 / 1 kg)</span></div></span>
-                
-                <hr/>
-
-                <img src={tomato} alt="tomato" id='tomato'></img>
-                <span style={{marginLeft:'60px'}}>Tomato
-                <div style={{marginLeft:'130px',marginTop:'-30px'}}><span>(Rs 20.00/ 1 kg)</span></div></span>
-                
-                <hr/>
-
-                <img src={potato} alt="potato" id='potato'></img>
-                <span style={{marginLeft:'30px'}}>Potato
-                <div style={{marginLeft:'125px',marginTop:'-30px'}}><span>(Rs 40.00/ 1 kg)</span></div></span>
-                <hr/>
-                
-            
-
-</div>
-
-
-        
+        return (
+            <div>
+               
+                {
+                this.state.cart.map(e => <Cart key={e.name} {...e} /> ) 
+                } 
+                 {
+                  products.map(items=> <Product key={items.id} {...items} addfun={this.handleAddData.bind(this)}/>)
+                } 
+            </div>
         )
     }
 }
 
-export default HomePage
+export default Home

@@ -10,7 +10,8 @@ export class Admin extends Component {
              price:'',
              inStock:'',
              vegetabledetails:[],
-             selectValue:''
+            
+             
         }
     }
 
@@ -39,6 +40,7 @@ export class Admin extends Component {
         var price=this.state.price;
         var stock=this.state.inStock;
         var data=this.state.vegetabledetails
+        
 
        var obj={name,price,stock}
          
@@ -96,6 +98,9 @@ export class Admin extends Component {
                            
                           
                         </tr>
+
+                        
+
                         <td></td><td><button type="submit" value='' onClick={this.SubmitData}>Submit</button></td>
 
 

@@ -9,6 +9,7 @@ import './Project/FontAwesomeIcon/Icon' // to activate icon
 
 import Header from './Project/Header';
 import Admin from './Project/Admin';
+import Cart from './Project/Cart';
 
 
 ReactDOM.render(

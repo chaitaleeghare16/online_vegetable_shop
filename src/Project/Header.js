@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import  './Styles/Header.css'
-import logo from './Images/logo.jpeg'
+
+
+
 import { Link, BrowserRouter,Route, Switch} from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
  import Cart from './Cart'
@@ -13,19 +15,25 @@ import Footer from './Footer'
 import Admin from './Admin'
 import Home from './Home'
 import HomePage from './HomePage'
+import Product from './Product'
 
 
 
 export class Header extends Component {
+  
     render() {
+        
+          
+
         return (
             <BrowserRouter>
-            <div id="header">
-            
-            
-            
-
-                <img id='logo' src={logo} alt="logo"></img> 
+            <main id="header">
+            <div>
+             
+                
+            </div>
+            <div>
+                <img id='logo' src='logo.jpeg' alt="logo"></img> 
 
                 <span id='home'><Link className='link' to='/'>Home</Link></span>
                 <span id='homeicon'><FontAwesomeIcon  className='homeicon' icon="home" size='1x' /></span>
@@ -45,18 +53,21 @@ export class Header extends Component {
 
                 <span  id='logout'><Link className='link' to='/login'>LogOut</Link></span>
 
-
-
+              </div>
+               
+ 
                 
                 
-            </div>
-
+</main> 
+          
             <Switch>
                      <Route path='/cart' exact component={Cart}></Route>
                      <Route path='/aboutus' exact component={AboutUs}></Route> 
                      <Route path='/myorder' exact component={MyOrder}></Route> 
                      <Route path='/home/:name' exact component={HomePage}></Route> 
                      <Route path='/admin/:name' exact component={Admin}></Route> 
+                     
+
                      <Route path='/login' exact component={LogIn}/>
                     <Route path="/signup" exact component={SignUp}/>
                     <Route path="/" exact component={Home}/>
@@ -67,7 +78,7 @@ export class Header extends Component {
                
            
                     
-                   
+                    
                    
                 </BrowserRouter>  
 
