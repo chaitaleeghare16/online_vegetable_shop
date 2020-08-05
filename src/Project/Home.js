@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import Cart from './Cart';
 
-
 import { Link } from 'react-router-dom';
+
 
 
 
@@ -58,6 +58,18 @@ const products =
     ]
 
     export class Home extends Component {
+
+
+        calculatTotalAmount()
+{
+    var sum=0
+    var cart_items=JSON.parse(localStorage.getItem('cart'))
+    cart_items.map((items,index)=>{
+                sum += items.count*items.price
+    })
+    localStorage.setItem('total',JSON.stringify(sum))
+ 
+}
         
     handleAddData=(product)=>
     {
@@ -81,11 +93,13 @@ const products =
 
         var arr1=JSON.parse(localStorage.getItem('cart'))
         if(arr1 == null)
-
         {
-            arr1.push(obj)
+            // arr1.push(obj)
+            flag = 0 
         }
             
+        else
+        {
         arr1.map((item,index)=>
          {
            
@@ -95,34 +109,33 @@ const products =
                console.log(id +''+item.id)
               flag=1;
               matchId=item.id;
-              i=index;
-
-             
+              i=index;   
            }
-           
-           
       })
+    }
        if(flag === 0)
        {
-           alert('added into cart')
          
            var cart_data=JSON.parse(localStorage.getItem('cart'))
            if(cart_data==null)
             {
             cart_data=[]
             }
+            obj.count+=1
             cart_data.push(obj)
             localStorage.setItem('cart',JSON.stringify(cart_data))
-        
+            alert('added into cart')
        }
 
        if(flag==1)
        {
             alert('already into cart..go to cart')
-           arr1[i].count+=1;
+           
         
        }
 
+       this.calculatTotalAmount()
+       
     }
 
     
@@ -130,11 +143,11 @@ const products =
         
         
 
-
+// intialize cart and product variable 
    componentDidMount()
    {
     var arr =JSON.parse(localStorage.getItem('product')) 
-    var cart_arr = JSON.parse(localStorage.getItem('cart')) 
+    var total = JSON.parse(localStorage.getItem('total')) || 0
        
     if(arr==null)
     {
@@ -147,15 +160,10 @@ const products =
            localStorage.setItem('product',JSON.stringify(arr))
         })
     }
-    if(cart_arr==null)
-    {
-        cart_arr=[]
-        this.state.cart.map((items)=>{
-            cart_arr.push(items)
-            localStorage.setItem('cart',JSON.stringify(cart_arr))
-        })
-    }
-
+    
+        localStorage.setItem('total',JSON.stringify(total))
+        
+    
 }
     
     
@@ -167,9 +175,10 @@ const products =
         if(a==null)
         {
             a=[]
-            localStorage.setItem('cart',JSON.stringify(a))
+           
 
         }
+        
        
         return (
             <div>

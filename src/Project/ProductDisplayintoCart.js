@@ -20,6 +20,7 @@ export class ProductDisplayintoCart extends Component {
         }
 
         localStorage.setItem('cart',JSON.stringify(cart_items))
+        this.calculatTotalAmount()
 
         window.location.reload()
 
@@ -27,18 +28,70 @@ export class ProductDisplayintoCart extends Component {
         
 }
 
+calculatTotalAmount()
+{
+    var sum=0
+    var cart_items=JSON.parse(localStorage.getItem('cart'))
+    cart_items.map((items,index)=>{
+                sum += items.count*items.price
+    })
+    localStorage.setItem('total',JSON.stringify(sum))
+ 
+}
+
+placeOrder()
+{
+
+    
+    var cart_items=JSON.parse(localStorage.getItem('cart'))
+    var order= JSON.parse(localStorage.getItem('order')) 
+    
+        if(order==null)
+     {
+         order=[]
+    //     localStorage.setItem('order',JSON.stringify(cart_items))
+    //     var temp=[]
+    //     var sum=0
+    //     localStorage.removeItem('cart')
+    //     localStorage.setItem('cart',JSON.stringify(temp))
+    //     localStorage.setItem('total',JSON.stringify(sum))
+    }
+    
+    
+        order.push(cart_items)
+       // var order =Object.assign(cart_items)
+        localStorage.setItem('order',JSON.stringify(order))
+        var temp=[]
+        var sum=0
+        localStorage.removeItem('cart')
+        localStorage.setItem('cart',JSON.stringify(temp))
+        localStorage.setItem('total',JSON.stringify(sum))
+        console.log( JSON.parse(localStorage.getItem('order')))
+
+    //}
+
+   
+       
+
+
+    alert('order placed')
+}
+
      
   
     render() {
       
+        var sum =JSON.parse(localStorage.getItem('total'))  || 0
         var cart_items=JSON.parse(localStorage.getItem('cart'))
         if(cart_items==null)
         {
             alert('cart is empty')
         }
+        this.calculatTotalAmount()
         return (
             <div>
                 {
+                
                 cart_items.map((items,index)=>(
                 <ul className="list pl0 mt0 measure center" key={items.id} >        
                 <li
@@ -54,14 +107,19 @@ export class ProductDisplayintoCart extends Component {
                         
                          <button>-</button>&nbsp;
                       </span>
-                         
+                    
                         
                      </div>
                      
+                     
                </li>
                </ul>
+                ))}
+                
+               <div className="list pl0 mt0 measure center">Total Amount : {sum} </div>
+               <div style={{marginLeft:'740px'}}><button className='btn btn-danger' style={{width:'110px'}}  onClick={()=>this.placeOrder()}>Place Order</button></div> 
                     
-                    ))}
+                   
         
                  
              
