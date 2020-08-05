@@ -3,32 +3,45 @@
 
 
 
-import React from 'react'
+// import React from 'react'
 
-import Button from 'react-bootstrap/Button'
-import  styles from './Styles/Product.css'
+// import Button from 'react-bootstrap/Button'
+// import  styles from './Styles/Product.css'
 
- const Product=({id,name,img,price,stock,addfun})=> {  //add to cart
-    console.log({img})
-    return (
-        <div>
-            <article className='mw5 center  bg-white br3 pa3 pa4-na mv3 ba--black-10 ' key={id}>
+//  export const Product=({key,id,img,name,price,stock,unit,count,addfun})=> {  //add to cart
+   
+    
+//     return (
+       
+//         <ul class="list pl0 mt0 measure center">
+//                 <li
+//                     class="flex items-center lh-copy pa3 ph0-l bb b--black-10">
+//                     <img class="w3 h3 w4-ns h4-ns br-100" src={img} />
+//                     <div class="pl3 flex-auto">
+//                         <span class="f6 db black-70">{name}</span>
+//                          <span class="f6 db black-90"><strong>Price :</strong>{price}/{unit}</span>
+//                         <span class="f6 db black-70">{stock}</span>
+//                         {/* <span class="f6 db black-70">{units}</span> */}
+//                         <button className='btn btn-danger'onClick={addfun({id,img,name,price,stock,unit,count})}>ADD to cart</button>
+                        
 
-                <div className='to'>
-               
-               <img src={img} alt="image"/> 
-               
-               <h5 className ='f3 mb2'>{name} </h5>
-               <h5 className ='f3 mb2'>price:{price} </h5> 
-                
-               <h5 className ='f3 mb2'>{stock}  </h5> 
-              <button variant='danger' className='btn' onClick={()=>addfun({id,name,img,price,stock,units:1})}>ADD To Cart</button>
-                </div>
-            </article>
-        </div>
-    )
-}
 
- 
- export default Product
- 
+//                     </div>
+//                     {/* <div>
+//                         <button class="f6 link blue hover-dark-gray" >+</button>&nbsp;
+//                         <span>0</span>&nbsp;
+//                         <button class="f6 link blue hover-dark-gray">-</button>
+
+//                     </div> */}
+//                 </li>
+
+//         </ul>
+
+           
+    
+
+    
+    
+//     )
+// }
+// export default Product

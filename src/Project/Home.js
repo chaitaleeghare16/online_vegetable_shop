@@ -1,152 +1,219 @@
 import React, { Component } from 'react'
 import Cart from './Cart';
-import Product from './Product';
+
 
 import { Link } from 'react-router-dom';
 
 
-const products = [
+
+const products =
+[
     {
     
         id:1,
-        name:'tomato',
+        name:'Tomato',
         img :'tomato.jpeg',
         price:19,
+        unit:'kg',
         stock:'In Stock',
-        units:0
-       
-        
-    
+        count:0
+      
     },
     {
     
         id:2,
-        name:'onion',
+        name:'Onion',
         img :'onion.jpeg', 
-        price:40, 
+        price:40,
+        unit:'kg', 
         stock:'In Stock',
-        units:0
-      
-        
+        count:0
+     
     },
     {
     
         id:3,
-        name:'potato',
+        name:'Potato',
         img :'potato.jpeg',
         price:60, 
+        unit:'kg',
         stock:'In Stock',
-        units:0
-        
+        count:0
+       
+     
+    },
+       
+    {
+     id:4,
+    name:'Ginger',
+    img :'ginger.jpeg',
+    price:30,
+    unit:'gm', 
+    stock:'In Stock',
+    count:0
     }
+
+
     
     ]
-export class Home extends Component {
-    constructor() {
-        super()
-    
-        this.state = {
-           
-             cart:[
-                 {  
-                     id:2,
-                    name:'onion',           
-                    units:1
-                     
-                 }
-             ],
-             flag:0
+
+    export class Home extends Component {
+        
+    handleAddData=(product)=>
+    {
+       console.log(product)
+      const id= product.id
+      const name = product.name
+      const img=product.img
+      const price=product.price
+      const unit=product.unit
+      const count=product.count
+
+      var obj ={id,name,img,price,unit,count}
+       
+        
+         
+        
+
+        var flag=0;
+        var matchId=0;
+        var i=0
+
+        var arr1=JSON.parse(localStorage.getItem('cart'))
+        if(arr1 == null)
+
+        {
+            arr1.push(obj)
         }
+            
+        arr1.map((item,index)=>
+         {
+           
+           if(id === item.id && name===(item.name))
+           {
+
+               console.log(id +''+item.id)
+              flag=1;
+              matchId=item.id;
+              i=index;
+
+             
+           }
+           
+           
+      })
+       if(flag === 0)
+       {
+           alert('added into cart')
+         
+           var cart_data=JSON.parse(localStorage.getItem('cart'))
+           if(cart_data==null)
+            {
+            cart_data=[]
+            }
+            cart_data.push(obj)
+            localStorage.setItem('cart',JSON.stringify(cart_data))
+        
+       }
+
+       if(flag==1)
+       {
+            alert('already into cart..go to cart')
+           arr1[i].count+=1;
+        
+       }
+
     }
 
-    handleAddData(product)
+    
+   
+        
+        
+
+
+   componentDidMount()
+   {
+    var arr =JSON.parse(localStorage.getItem('product')) 
+    var cart_arr = JSON.parse(localStorage.getItem('cart')) 
+       
+    if(arr==null)
     {
+        arr=[]
+      products.map((items)=>{
 
-        //console.log(product)
-       // filter method return array
-    //     const already_present_item_in_cart = this.state.cart.filter(cartData=>{ return (cartData.id === product.id)});
-        
-        
-    //         if(already_present_item_in_cart.length>0)
-    //    {
-    //     const not_present_item_in_cart = this.state.cart.filter(cartData=> { return (cartData.id !== product.id)})
-
+       
+            arr.push(items)
            
-    //     const updatedUnits = {
-    //         ...already_present_item_in_cart[0],units:already_present_item_in_cart[0].units +product.units}
+           localStorage.setItem('product',JSON.stringify(arr))
+        })
+    }
+    if(cart_arr==null)
+    {
+        cart_arr=[]
+        this.state.cart.map((items)=>{
+            cart_arr.push(items)
+            localStorage.setItem('cart',JSON.stringify(cart_arr))
+        })
+    }
+
+}
+    
+    
+
+
       
-
-    //            this.setState({
-    //                cart:[...not_present_item_in_cart,updatedUnits]
-
-    //            });
-    //     }
-
-    //        else{
-    //            this.setState({cart:[...this.state.cart,product]});
-    //        }
-
-       
-     
-     const id=product.id;
-     const name=product.name;
-     const units=product.units+1;
-     const img=product.img
-     console.log(img)
-
-     var obj = {id,name,units,img}
-     
-     
-     var i=0
-     
-
-   this.state.cart.map((item,index)=>{
-
-
-
-    if(item.id !== product.id)
-
-    {
-        console.log(product.id+' '+item.id+' '+index)
-       this.setState({cart:[...this.state.cart,product]})
-     }
-
-      if(item.id === product.id)
-      {
-        console.log(product.id+' '+item.id+' '+index)
-
-        //var index = this.state.cart.indexof(item.id==product.id)
-        i=index;
-        var arr =this.state.cart.splice(i,1,obj)
-        this.setState({cart:[arr]})
-                   console.log(this.state.cart)
-     }
-    
-   })
-  
-   // alert(this.state.cart)
-           
-    
-   }
-
-    
     render() {
+        var a =JSON.parse(localStorage.getItem('cart'))
+        if(a==null)
+        {
+            a=[]
+            localStorage.setItem('cart',JSON.stringify(a))
+
+        }
        
-  
-        
         return (
             <div>
+                 
                
-                {
-                <Cart cart={this.state.cart}/>  
-                } 
-                 {
-                  products.map(items=> <Product key={items.id} {...items} addfun={({id,name,img,price,stock,units})=>this.handleAddData({id,name,img,price,stock,units:1})}/>)
-                } 
+                  { 
+                 
+                    
+                    JSON.parse(localStorage.getItem('product')) .map((items,index)=>
+
+                    
+                    <ul class="list pl0 mt0 measure center">
+                    <li
+                        class="flex items-center lh-copy pa3 ph0-l bb b--black-10">
+                        <img class="w3 h3 w4-ns h4-ns br-100" src={items.img} />
+                        <div class="pl3 flex-auto">
+                            <span class="f6 db black-70">{items.name}</span>
+                            <span class="f6 db black-90"><strong>Price :</strong>{items.price}/{items.unit}</span>
+                            <span class="f6 db black-70">{items.stock}</span>
+                           
+                           
+                         
+                            <button className='btn btn-danger' value={index} onClick={()=>this.handleAddData(items)}>ADD to cart</button> 
+                          
+                        </div>
+                    
+                    </li>
+    
+            </ul>)
+    
+                  }
+                   
+                   
+    
+            
+                
+                
+            
 
             </div>
         )
     }
 }
 
+
 export default Home
+
