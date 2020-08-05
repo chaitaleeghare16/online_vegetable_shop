@@ -34,6 +34,7 @@ calculatTotalAmount()
     var cart_items=JSON.parse(localStorage.getItem('cart'))
     cart_items.map((items,index)=>{
                 sum += items.count*items.price
+
     })
     localStorage.setItem('total',JSON.stringify(sum))
  
@@ -48,27 +49,24 @@ placeOrder()
     
         if(order==null)
      {
-         order=[]
-    //     localStorage.setItem('order',JSON.stringify(cart_items))
-    //     var temp=[]
-    //     var sum=0
-    //     localStorage.removeItem('cart')
-    //     localStorage.setItem('cart',JSON.stringify(temp))
-    //     localStorage.setItem('total',JSON.stringify(sum))
-    }
-    
-    
-        order.push(cart_items)
-       // var order =Object.assign(cart_items)
-        localStorage.setItem('order',JSON.stringify(order))
-        var temp=[]
-        var sum=0
-        localStorage.removeItem('cart')
-        localStorage.setItem('cart',JSON.stringify(temp))
-        localStorage.setItem('total',JSON.stringify(sum))
-        console.log( JSON.parse(localStorage.getItem('order')))
 
-    //}
+        localStorage.setItem('order',JSON.stringify(cart_items))
+       
+    }
+    else
+    {
+        //we need to pass cart items as object instead of array so spreading array with spread operator
+        order.push(...cart_items)
+        localStorage.setItem('order',JSON.stringify(order))
+    }
+
+    // once the order is placed we need to remove items from the cart 
+    // below code will handle the situation by replacing the content with empty values 
+    var temp=[]
+    var sum=0
+    localStorage.setItem('cart',JSON.stringify(temp))
+    localStorage.setItem('total',JSON.stringify(sum))
+    
 
    
        
