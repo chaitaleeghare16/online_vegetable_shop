@@ -1,18 +1,12 @@
-
-
-
-
-
 // import React from 'react'
 
 // import Button from 'react-bootstrap/Button'
 // import  styles from './Styles/Product.css'
 
 //  export const Product=({key,id,img,name,price,stock,unit,count,addfun})=> {  //add to cart
-   
-    
+
 //     return (
-       
+
 //         <ul class="list pl0 mt0 measure center">
 //                 <li
 //                     class="flex items-center lh-copy pa3 ph0-l bb b--black-10">
@@ -23,8 +17,6 @@
 //                         <span class="f6 db black-70">{stock}</span>
 //                         {/* <span class="f6 db black-70">{units}</span> */}
 //                         <button className='btn btn-danger'onClick={addfun({id,img,name,price,stock,unit,count})}>ADD to cart</button>
-                        
-
 
 //                     </div>
 //                     {/* <div>
@@ -37,11 +29,6 @@
 
 //         </ul>
 
-           
-    
-
-    
-    
 //     )
 // }
 // export default Product

@@ -1,13 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
 export class MyOrder extends Component {
-    render() {
-        return (
-            <div>
-                from myorder
-            </div>
-        )
-    }
+  render() {
+    return <div>from myorder</div>;
+  }
 }
 
-export default MyOrder
+export default MyOrder;
