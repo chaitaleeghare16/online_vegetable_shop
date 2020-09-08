@@ -1,22 +1,14 @@
-/* #phone
-{
- margin-top:480px;
- 
- 
-}
-#contactus
-{
-   color:black;
-   font-style: italic;
-  margin-left: 600px;
-} */
-#footer
-{
-  position: fixed;
+.main-footer {
+  position: -webkit-sticky;
+  position: relative;
   left: 0;
   bottom: 0;
   width: 100%;
-  background-color:hsla(120, 100%, 25%, 0.726);
+  background-color: hsla(120, 100%, 25%, 0.726);
   color: black;
+  padding: 20px;
+  transform: translateX(-50%, -50%);
+}
+.contents {
   text-align: center;
 }

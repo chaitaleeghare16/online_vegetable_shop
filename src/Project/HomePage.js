@@ -1,90 +1,163 @@
 import React, { Component } from "react";
 import Cart from "./Cart";
-import Product from "./Product";
+
+import { Link } from "react-router-dom";
+import Home from "./Home";
 
 const products = [
   {
     id: 1,
-    name: "onion",
-    image: <img src="onion.jpeg" alt="onion" />,
+    name: "Tomato",
+    img: "tomato.jpeg",
     price: 19,
+    unit: "kg",
     stock: "In Stock",
-    units: 0,
+    count: 0,
   },
   {
     id: 2,
-    name: "tomato",
-    image: <img src="tomato.jpeg" alt="tomato" />,
+    name: "Onion",
+    img: "onion.jpeg",
     price: 40,
+    unit: "kg",
     stock: "In Stock",
-    units: 0,
+    count: 0,
   },
   {
     id: 3,
-    name: "potato",
-    image: <img src="potato.jpeg" alt="potato" />,
+    name: "Potato",
+    img: "potato.jpeg",
     price: 60,
+    unit: "kg",
     stock: "In Stock",
-    units: 0,
+    count: 0,
+  },
+
+  {
+    id: 4,
+    name: "Ginger",
+    img: "ginger.jpeg",
+    price: 30,
+    unit: "gm",
+    stock: "In Stock",
+    count: 0,
   },
 ];
-export class Home extends Component {
-  constructor() {
-    super();
 
-    this.state = {
-      cart: [
-        {
-          name: "onion",
-          units: 1,
-        },
-      ],
-    };
+export class HomePage extends Component {
+  calculatTotalAmount() {
+    var sum = 0;
+    var cart_items = JSON.parse(localStorage.getItem("cart"));
+    cart_items.map((items, index) => {
+      sum += items.count * items.price;
+    });
+    localStorage.setItem("total", JSON.stringify(sum));
   }
 
-  handleAddData(product) {
-    // console.log(product)
-    //filter method return array
-    const already_present_item_in_cart = this.state.cart.filter((cartData) => {
-      return cartData.id === product.id;
-    });
+  handleAddData = (product) => {
+    console.log(product);
+    const id = product.id;
+    const name = product.name;
+    const img = product.img;
+    const price = product.price;
+    const unit = product.unit;
+    const count = product.count;
 
-    if (already_present_item_in_cart.length > 0) {
-      const not_present_item_in_cart = this.state.cart.filter((cartData) => {
-        return cartData.id !== product.id;
-      });
+    var obj = { id, name, img, price, unit, count };
 
-      const updatedUnits = {
-        ...already_present_item_in_cart[0],
-        units: already_present_item_in_cart[0].units + product.units,
-      };
+    var flag = 0;
+    var matchId = 0;
+    var i = 0;
 
-      this.setState({
-        cart: [...not_present_item_in_cart, updatedUnits],
-      });
+    var arr1 = JSON.parse(localStorage.getItem("cart"));
+    if (arr1 == null) {
+      // arr1.push(obj)
+      flag = 0;
     } else {
-      this.setState({ cart: [...this.state.cart, product] });
+      arr1.map((item, index) => {
+        if (id === item.id && name === item.name) {
+          console.log(id + "" + item.id);
+          flag = 1;
+          matchId = item.id;
+          i = index;
+        }
+      });
     }
+    if (flag === 0) {
+      var cart_data = JSON.parse(localStorage.getItem("cart"));
+      if (cart_data == null) {
+        cart_data = [];
+      }
+      obj.count += 1;
+      cart_data.push(obj);
+      localStorage.setItem("cart", JSON.stringify(cart_data));
+      alert("added into cart");
+    }
+
+    if (flag == 1) {
+      alert("already into cart..go to cart");
+    }
+
+    this.calculatTotalAmount();
+  };
+
+  // intialize cart and product variable
+  componentDidMount() {
+    var arr = JSON.parse(localStorage.getItem("product"));
+    var total = JSON.parse(localStorage.getItem("total")) || 0;
+
+    if (arr == null) {
+      arr = [];
+      products.map((items) => {
+        arr.push(items);
+
+        localStorage.setItem("product", JSON.stringify(arr));
+      });
+    }
+
+    localStorage.setItem("total", JSON.stringify(total));
   }
 
   render() {
+    // let Username_Of_LoggedIn_User_Is = this.props.match.params.name;
+    var a = JSON.parse(localStorage.getItem("product"));
+    if (a == null) {
+      this.componentDidMount();
+    }
+
     let Username_Of_LoggedIn_User_Is = this.props.match.params.name;
 
     return (
       <div>
-        {this.state.cart.map((e) => (
-          <Cart key={e.name} {...e} />
-        ))}
-        {products.map((items) => (
-          <Product
-            key={items.id}
-            {...items}
-            addfun={this.handleAddData.bind(this)}
-          />
+        <div style={{ color: "red", fontSize: "40px" }}>
+          Welcome {Username_Of_LoggedIn_User_Is} (user)
+        </div>
+        {JSON.parse(localStorage.getItem("product")).map((items, index) => (
+          <ul class="list pl0 mt0 measure center">
+            <li class="flex items-center lh-copy pa3 ph0-l bb b--black-10">
+              <img class="w3 h3 w4-ns h4-ns br-100" src={items.img} />
+              <div class="pl3 flex-auto">
+                <span class="f6 db black-70">{items.name}</span>
+                <span class="f6 db black-90">
+                  <strong>Price :</strong>
+                  {items.price}/{items.unit}
+                </span>
+                <span class="f6 db black-70">{items.stock}</span>
+
+                <button
+                  className="btn btn-danger"
+                  value={index}
+                  onClick={() => this.handleAddData(items)}
+                >
+                  ADD to cart
+                </button>
+              </div>
+            </li>
+          </ul>
         ))}
       </div>
     );
   }
 }
 
-export default Home;
+export default HomePage;

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./Styles/LogIn.css";
 import { Link, BrowserRouter, Route, NavLink, Switch } from "react-router-dom";
+import Header from "./Header";
+import Footer from "./Footer";
 
 export class LogIn extends Component {
   constructor(props) {
@@ -23,7 +25,7 @@ export class LogIn extends Component {
     const userdetail = this.state.allUsersDetails;
 
     var flag = 0;
-    var invaliduser = 0;
+    var isLoggedIn = false;
     var name = "";
     for (var user of userdetail) {
       if (
@@ -33,6 +35,8 @@ export class LogIn extends Component {
       ) {
         flag = 1;
         name = user.FirstName;
+        isLoggedIn = true;
+
         break;
       }
 
@@ -43,14 +47,15 @@ export class LogIn extends Component {
       ) {
         flag = 2;
         name = user.FirstName;
+        isLoggedIn = true;
         break;
       }
     }
 
-    if (flag === 1) {
+    if (flag === 1 && isLoggedIn == true) {
       this.props.history.push(`/home/${name}`);
     }
-    if (flag === 2) {
+    if (flag === 2 && isLoggedIn == true) {
       this.props.history.push(`/admin/${name}`);
     }
 
@@ -93,53 +98,61 @@ export class LogIn extends Component {
   render() {
     return (
       <div>
-        <form
-          a
-          style={{ maxWidth: "500px", margin: "auto", marginTop: "150px" }}
-        >
-          <span class="input-container">
-            <i class="fa fa-user icon"></i>
-            <input
-              class="input-field"
-              type="text"
-              placeholder="Username"
-              autoComplete="off"
-              name="username"
-              value={this.state.username}
-              onChange={this.OnChange}
-            />
-          </span>
-          <pre style={{ color: "red" }}>{this.state.error.usernameerror}</pre>
-
-          <span class="input-container">
-            <i class="fa fa-key icon"></i>
-            <input
-              class="input-field"
-              type="password"
-              placeholder="Password"
-              autoComplete="off"
-              value={this.state.password}
-              name="password"
-              onChange={this.OnChange}
-            />
-          </span>
-          <pre style={{ color: "red" }}>{this.state.error.passworderror}</pre>
-
-          <button
-            type="button"
-            className="btn btn-primary"
-            value={this.state.username}
-            onClick={this.validLoginForm}
+        <div>
+          <Header />
+        </div>
+        <div>
+          <form
+            a
+            style={{ maxWidth: "500px", margin: "auto", marginTop: "150px" }}
           >
-            LogIn
-          </button>
-          <div>
-            <b>need an account? click here </b>{" "}
-            <span>
-              <Link to="/signup">SignUp</Link>
+            <span class="input-container">
+              <i class="fa fa-user icon"></i>
+              <input
+                class="input-field"
+                type="text"
+                placeholder="Username"
+                autoComplete="off"
+                name="username"
+                value={this.state.username}
+                onChange={this.OnChange}
+              />
             </span>
-          </div>
-        </form>
+            <pre style={{ color: "red" }}>{this.state.error.usernameerror}</pre>
+
+            <span class="input-container">
+              <i class="fa fa-key icon"></i>
+              <input
+                class="input-field"
+                type="password"
+                placeholder="Password"
+                autoComplete="off"
+                value={this.state.password}
+                name="password"
+                onChange={this.OnChange}
+              />
+            </span>
+            <pre style={{ color: "red" }}>{this.state.error.passworderror}</pre>
+
+            <button
+              type="button"
+              className="btn btn-primary"
+              value={this.state.username}
+              onClick={this.validLoginForm}
+            >
+              LogIn
+            </button>
+            <div>
+              <b>need an account? click here </b>{" "}
+              <span>
+                <Link to="/signup">SignUp</Link>
+              </span>
+            </div>
+          </form>
+        </div>
+        <div>
+          <Footer />
+        </div>
       </div>
     );
   }

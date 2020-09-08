@@ -2,6 +2,8 @@ import React, { Component } from "react";
 
 import "./Styles/SignUp.css";
 import { BrowserRouter, Route } from "react-router-dom";
+import Footer from "./Footer";
+import Header from "./Header";
 
 export class SignUp extends Component {
   constructor(props) {
@@ -111,7 +113,7 @@ export class SignUp extends Component {
 
       if (validForm == true) {
         const userDetails = {
-          isAdmin: false,
+          isAdmin: true,
           FirstName: this.state.FirstName,
           Email: this.state.Email,
           Password: this.state.Password,
@@ -151,173 +153,183 @@ export class SignUp extends Component {
 
   render() {
     return (
-      <div className="box" i>
-        <form autoComplete="off">
-          <div className="col-md-10 form-group">
-            <label className="float-left block-text text-darken-2 s">
-              {" "}
-              First name{" "}
-              <span aria-hidden="true" style={{ color: "red" }}>
-                *
-              </span>{" "}
-            </label>
-            <input
-              type="text"
-              name="FirstName"
-              value={this.state.FirstName}
-              onChange={this.onchange}
-              placeholder="First Name"
-              required
-              className="form-control"
-            />
-            <pre style={{ color: "red" }}> {this.state.firstnameError}</pre>
-          </div>
-          <div className="col-md-10 form-group">
-            <label className="float-left block-text text-darken-2 s">
-              {" "}
-              Address{" "}
-              <span aria-hidden="true" style={{ color: "red" }}>
-                *
-              </span>{" "}
-            </label>
-            <input
-              type="text"
-              name="Address"
-              value={this.state.Address}
-              onChange={this.onchange}
-              placeholder="Address"
-              required
-              className="form-control"
-            />
-            <pre style={{ color: "red" }}> {this.state.AddressError}</pre>
-          </div>
+      <div>
+        <div>
+          <Header />
+        </div>
+        <div className="box" style={{ marginLeft: "400px" }}>
+          <form autoComplete="off">
+            <div className="col-md-6 form-group">
+              <label className="float-left block-text text-darken-2 s">
+                {" "}
+                First name{" "}
+                <span aria-hidden="true" style={{ color: "red" }}>
+                  *
+                </span>{" "}
+              </label>
+              <input
+                type="text"
+                name="FirstName"
+                value={this.state.FirstName}
+                onChange={this.onchange}
+                placeholder="First Name"
+                required
+                className="form-control"
+              />
+              <pre style={{ color: "red" }}> {this.state.firstnameError}</pre>
+            </div>
+            <div className="col-md-6 form-group">
+              <label className="float-left block-text text-darken-2 s">
+                {" "}
+                Address{" "}
+                <span aria-hidden="true" style={{ color: "red" }}>
+                  *
+                </span>{" "}
+              </label>
+              <input
+                type="text"
+                name="Address"
+                value={this.state.Address}
+                onChange={this.onchange}
+                placeholder="Address"
+                required
+                className="form-control"
+              />
+              <pre style={{ color: "red" }}> {this.state.AddressError}</pre>
+            </div>
 
-          <div className="col-md-10 form-group">
-            <label className="float-left block-text text-darken-2 s">
-              {" "}
-              Email{" "}
-              <span aria-hidden="true" style={{ color: "red" }}>
-                *
-              </span>{" "}
-            </label>
-            <input
-              type="text"
-              name="Email"
-              value={this.state.Email}
-              onChange={this.onchange}
-              placeholder="Email"
-              required
-              className="form-control"
-            />
-            <pre style={{ color: "red" }}> {this.state.emailError}</pre>
-          </div>
+            <div className="col-md-6 form-group">
+              <label className="float-left block-text text-darken-2 s">
+                {" "}
+                Email{" "}
+                <span aria-hidden="true" style={{ color: "red" }}>
+                  *
+                </span>{" "}
+              </label>
+              <input
+                type="text"
+                name="Email"
+                value={this.state.Email}
+                onChange={this.onchange}
+                placeholder="Email"
+                required
+                className="form-control"
+              />
+              <pre style={{ color: "red" }}> {this.state.emailError}</pre>
+            </div>
 
-          <div className="col-md-10 form-group">
-            <label className="float-left block-text text-darken-2 s">
-              {" "}
-              City{" "}
-              <span aria-hidden="true" style={{ color: "red" }}>
-                *
-              </span>{" "}
-            </label>
-            <input
-              type="text"
-              name="City"
-              value={this.state.City}
-              onChange={this.onchange}
-              placeholder="City"
-              required
-              className="form-control"
-            />
-            <pre style={{ color: "red" }}> {this.state.CityError}</pre>
-          </div>
+            <div className="col-md-6 form-group">
+              <label className="float-left block-text text-darken-2 s">
+                {" "}
+                City{" "}
+                <span aria-hidden="true" style={{ color: "red" }}>
+                  *
+                </span>{" "}
+              </label>
+              <input
+                type="text"
+                name="City"
+                value={this.state.City}
+                onChange={this.onchange}
+                placeholder="City"
+                required
+                className="form-control"
+              />
+              <pre style={{ color: "red" }}> {this.state.CityError}</pre>
+            </div>
 
-          <div className="col-md-10 form-group">
-            <label className="float-left block-text text-darken-2 s">
-              {" "}
-              Area Pincode{" "}
-              <span aria-hidden="true" style={{ color: "red" }}>
-                *
-              </span>{" "}
-            </label>
-            <input
-              type="text"
-              name="Pincode"
-              value={this.state.Pincode}
-              onChange={this.onchange}
-              placeholder="Pincode"
-              required
-              className="form-control"
-            />
-            <pre style={{ color: "red" }}> {this.state.PincodeError}</pre>
-          </div>
+            <div className="col-md-6 form-group">
+              <label className="float-left block-text text-darken-2 s">
+                {" "}
+                Area Pincode{" "}
+                <span aria-hidden="true" style={{ color: "red" }}>
+                  *
+                </span>{" "}
+              </label>
+              <input
+                type="text"
+                name="Pincode"
+                value={this.state.Pincode}
+                onChange={this.onchange}
+                placeholder="Pincode"
+                required
+                className="form-control"
+              />
+              <pre style={{ color: "red" }}> {this.state.PincodeError}</pre>
+            </div>
 
-          <div className="col-md-10 form-group">
-            <label className="float-left block-text text-darken-2 s">
-              {" "}
-              Phone Number
-              <span aria-hidden="true" style={{ color: "red" }}>
-                *
-              </span>{" "}
-            </label>
-            <input
-              type="text"
-              name="Phone"
-              value={this.state.Phone}
-              onChange={this.onchange}
-              placeholder="Phone Number"
-              required
-              className="form-control"
-            />
-            <pre style={{ color: "red" }}> {this.state.PhoneError}</pre>
-          </div>
-          <div className="col-md-10 form-group">
-            <label className="float-left block-text text-darken-2 s">
-              Password{" "}
-              <span aria-hidden="true" style={{ color: "red" }}>
-                *
-              </span>{" "}
-            </label>
-            <input
-              type="password"
-              name="Password"
-              value={this.state.Password}
-              onChange={this.onchange}
-              placeholder="Password"
-              required
-              className="form-control"
-            />
-            <pre style={{ color: "red" }}> {this.state.passwordError}</pre>
-          </div>
+            <div className="col-md-6 form-group">
+              <label className="float-left block-text text-darken-2 s">
+                {" "}
+                Phone Number
+                <span aria-hidden="true" style={{ color: "red" }}>
+                  *
+                </span>{" "}
+              </label>
+              <input
+                type="text"
+                name="Phone"
+                value={this.state.Phone}
+                onChange={this.onchange}
+                placeholder="Phone Number"
+                required
+                className="form-control"
+              />
+              <pre style={{ color: "red" }}> {this.state.PhoneError}</pre>
+            </div>
+            <div className="col-md-6 form-group">
+              <label className="float-left block-text text-darken-2 s">
+                Password{" "}
+                <span aria-hidden="true" style={{ color: "red" }}>
+                  *
+                </span>{" "}
+              </label>
+              <input
+                type="password"
+                name="Password"
+                value={this.state.Password}
+                onChange={this.onchange}
+                placeholder="Password"
+                required
+                className="form-control"
+              />
+              <pre style={{ color: "red" }}> {this.state.passwordError}</pre>
+            </div>
 
-          <div className="col-md-10 form-group">
-            <label className="float-left block-text text-darken-2 s">
+            <div className="col-md-6 form-group">
+              <label className="float-left block-text text-darken-2 s">
+                {" "}
+                ConfirmPassword
+                <span aria-hidden="true" style={{ color: "red" }}>
+                  *
+                </span>{" "}
+              </label>
+              <input
+                type="password"
+                name="ConfirmPassword"
+                value={this.state.ConfirmPassword}
+                onChange={this.onchange}
+                placeholder="ConfirmPassword"
+                required
+                className="form-control"
+              />
+            </div>
+            <div>
               {" "}
-              ConfirmPassword
-              <span aria-hidden="true" style={{ color: "red" }}>
-                *
-              </span>{" "}
-            </label>
-            <input
-              type="password"
-              name="ConfirmPassword"
-              value={this.state.ConfirmPassword}
-              onChange={this.onchange}
-              placeholder="ConfirmPassword"
-              required
-              className="form-control"
-            />
-          </div>
-
-          <button
-            type="button"
-            className="btn btn-primary m-2"
-            onClick={this.submitData}
-          >
-            {" "}
-            Sign up{" "}
-          </button>
-        </form>
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={this.submitData}
+                style={{ width: "200px", marginRight: "420px" }}
+              >
+                Sign up
+              </button>
+            </div>
+          </form>
+        </div>
+        <div>
+          <Footer />
+        </div>
       </div>
     );
   }

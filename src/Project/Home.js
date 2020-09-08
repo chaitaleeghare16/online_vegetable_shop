@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Cart from "./Cart";
 
 import { Link } from "react-router-dom";
+import Footer from "./Footer";
+import Header from "./Header";
 
 const products = [
   {
@@ -53,51 +55,57 @@ export class Home extends Component {
     localStorage.setItem("total", JSON.stringify(sum));
   }
 
-  handleAddData = (product) => {
-    console.log(product);
-    const id = product.id;
-    const name = product.name;
-    const img = product.img;
-    const price = product.price;
-    const unit = product.unit;
-    const count = product.count;
+  handleAddData = (product, nameofuser) => {
+    console.log(nameofuser);
 
-    var obj = { id, name, img, price, unit, count };
-
-    var flag = 0;
-    var matchId = 0;
-    var i = 0;
-
-    var arr1 = JSON.parse(localStorage.getItem("cart"));
-    if (arr1 == null) {
-      // arr1.push(obj)
-      flag = 0;
-    } else {
-      arr1.map((item, index) => {
-        if (id === item.id && name === item.name) {
-          console.log(id + "" + item.id);
-          flag = 1;
-          matchId = item.id;
-          i = index;
-        }
-      });
+    if (nameofuser === "Guest") {
+      alert("please login first");
     }
-    if (flag === 0) {
-      var cart_data = JSON.parse(localStorage.getItem("cart"));
-      if (cart_data == null) {
-        cart_data = [];
+    if (nameofuser !== "Guest") {
+      const id = product.id;
+      const name = product.name;
+      const img = product.img;
+      const price = product.price;
+      const unit = product.unit;
+      const count = product.count;
+
+      var obj = { id, name, img, price, unit, count };
+
+      var flag = 0;
+      var matchId = 0;
+      var i = 0;
+
+      var arr1 = JSON.parse(localStorage.getItem("cart"));
+      if (arr1 == null) {
+        // arr1.push(obj)
+        flag = 0;
+      } else {
+        arr1.map((item, index) => {
+          if (id === item.id && name === item.name) {
+            console.log(id + "" + item.id);
+            flag = 1;
+            matchId = item.id;
+            i = index;
+          }
+        });
       }
-      obj.count += 1;
-      cart_data.push(obj);
-      localStorage.setItem("cart", JSON.stringify(cart_data));
-      alert("added into cart");
-    }
+      if (flag === 0) {
+        var cart_data = JSON.parse(localStorage.getItem("cart"));
+        if (cart_data == null) {
+          cart_data = [];
+        }
+        obj.count += 1;
+        cart_data.push(obj);
+        localStorage.setItem("cart", JSON.stringify(cart_data));
+        alert("added into cart");
+      }
 
-    if (flag == 1) {
-      alert("already into cart..go to cart");
-    }
+      if (flag == 1) {
+        alert("already into cart..go to cart");
+      }
 
-    this.calculatTotalAmount();
+      this.calculatTotalAmount();
+    }
   };
 
   // intialize cart and product variable
@@ -116,8 +124,15 @@ export class Home extends Component {
 
     localStorage.setItem("total", JSON.stringify(total));
   }
-
   render() {
+    let Username_Of_LoggedIn_User_Is = this.props.match.params.name;
+
+    let name = "";
+    if (Username_Of_LoggedIn_User_Is == null) {
+      name = "Guest";
+    } else {
+      name = "Welcome  " + Username_Of_LoggedIn_User_Is;
+    }
     var a = JSON.parse(localStorage.getItem("product"));
     if (a == null) {
       this.componentDidMount();
@@ -125,6 +140,13 @@ export class Home extends Component {
 
     return (
       <div>
+        <div>
+          <Header />
+        </div>
+        <div style={{ marginLeft: "1200px", color: "red" }}>
+          User - <strong>{name}</strong>{" "}
+        </div>
+
         {JSON.parse(localStorage.getItem("product")).map((items, index) => (
           <ul class="list pl0 mt0 measure center">
             <li class="flex items-center lh-copy pa3 ph0-l bb b--black-10">
@@ -140,7 +162,7 @@ export class Home extends Component {
                 <button
                   className="btn btn-danger"
                   value={index}
-                  onClick={() => this.handleAddData(items)}
+                  onClick={() => this.handleAddData(items, name)}
                 >
                   ADD to cart
                 </button>
@@ -148,6 +170,10 @@ export class Home extends Component {
             </li>
           </ul>
         ))}
+
+        <div>
+          <Footer />
+        </div>
       </div>
     );
   }

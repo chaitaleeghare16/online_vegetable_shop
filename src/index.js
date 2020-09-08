@@ -1,21 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import * as serviceWorker from "./serviceWorker";
 
-import 'bootstrap/dist/css/bootstrap.min.css'; // to activate bootstrap
-import './Project/FontAwesomeIcon/Icon' // to activate icon
+import "bootstrap/dist/css/bootstrap.min.css"; // to activate bootstrap
+import "./Project/FontAwesomeIcon/Icon"; // to activate icon
 
-import Header from './Project/Header';
-import Admin from './Project/Admin';
-import Cart from './Project/Cart';
-
+import Header from "./Project/Header";
+import Admin from "./Project/Admin";
+import Cart from "./Project/Cart";
+import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
- 
-    <Header/>,
-  document.getElementById('root')
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change

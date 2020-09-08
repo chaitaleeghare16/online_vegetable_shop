@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import Header from "./Header";
+import Footer from "./Footer";
 
 export class ProductDisplayintoCart extends Component {
   updateCount = (count, id, index) => {
@@ -56,43 +58,53 @@ export class ProductDisplayintoCart extends Component {
     this.calculatTotalAmount();
     return (
       <div>
-        {cart_items.map((items, index) => (
-          <ul className="list pl0 mt0 measure center" key={items.id}>
-            <li className="flex items-center lh-copy pa3 ph0-l bb b--black-10">
-              <img className="w2 h2 w3-ns h3-ns br-100" src={items.img} />
-              <div className="pl3 flex-auto">
-                <span className="f6 db black-70">{items.name} </span>
-                <span className="f6 db black-70">
-                  price :{items.price}/{items.unit}{" "}
-                </span>
+        <div>
+          <Header />
+        </div>
+        <div>
+          {cart_items.map((items, index) => (
+            <ul className="list pl0 mt0 measure center" key={items.id}>
+              <li className="flex items-center lh-copy pa3 ph0-l bb b--black-10">
+                <img className="w2 h2 w3-ns h3-ns br-100" src={items.img} />
+                <div className="pl3 flex-auto">
+                  <span className="f6 db black-70">{items.name} </span>
+                  <span className="f6 db black-70">
+                    price :{items.price}/{items.unit}{" "}
+                  </span>
 
-                <span style={{ marginLeft: "200px" }}>
-                  count{" "}
-                  <button
-                    onClick={() =>
-                      this.updateCount(items.count, items.id, index)
-                    }
-                  >
-                    +
-                  </button>
-                  &nbsp;
-                  {items.count}&nbsp;
-                  <button>-</button>&nbsp;
-                </span>
-              </div>
-            </li>
-          </ul>
-        ))}
+                  <span style={{ marginLeft: "200px" }}>
+                    count{" "}
+                    <button
+                      onClick={() =>
+                        this.updateCount(items.count, items.id, index)
+                      }
+                    >
+                      +
+                    </button>
+                    &nbsp;
+                    {items.count}&nbsp;
+                    <button>-</button>&nbsp;
+                  </span>
+                </div>
+              </li>
+            </ul>
+          ))}
 
-        <div className="list pl0 mt0 measure center">Total Amount : {sum} </div>
-        <div style={{ marginLeft: "740px" }}>
-          <button
-            className="btn btn-danger"
-            style={{ width: "110px" }}
-            onClick={() => this.placeOrder()}
-          >
-            Place Order
-          </button>
+          <div className="list pl0 mt0 measure center">
+            Total Amount : {sum}{" "}
+          </div>
+          <div style={{ marginLeft: "740px" }}>
+            <button
+              className="btn btn-danger"
+              style={{ width: "110px" }}
+              onClick={() => this.placeOrder()}
+            >
+              Place Order
+            </button>
+          </div>
+        </div>
+        <div>
+          <Footer />
         </div>
       </div>
     );

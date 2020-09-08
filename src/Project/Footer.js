@@ -5,11 +5,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export class Footer extends Component {
   render() {
     return (
-      <div id="footer">
-        <span id="contactus">Contact Us ...</span>
-        <span id="phone">
-          <FontAwesomeIcon icon="phone-square" size="2x" id="phone" />
-        </span>
+      <div className="main-footer">
+        <div className="container">
+          <div className="contents">
+            &copy;{new Date().getFullYear()} All Rights Reserved | Term of
+            Service | Privacy
+          </div>
+        </div>
       </div>
     );
   }

@@ -57,77 +57,75 @@ export class Admin extends Component {
     return (
       <div>
         <div>
-          <h2>Welcome Admin {adminName}</h2>
+          <h2>Welcome {adminName} (Admin)</h2>
         </div>
         <span>
-          <form>
-            <table
-              class="table-bordered"
-              style={{
-                marginTop: "120px",
-                marginLeft: "260px",
-                border: "2px solid blue",
-              }}
-            >
-              <tr>
-                <th>
-                  <label>Vegetable_Name :</label>
-                </th>
-                {/* <td><input type="text" name='vegetableName' value={this.state.vegetableName} onChange={this.HandleChange} style={{width:'180px'}}/></td> */}
-                <td>
-                  <select
-                    name="vegetableName"
-                    onChange={this.HandleChange}
-                    style={{ width: "180px" }}
-                  >
-                    <option value="">Select</option>
-                    <option value="onion">Onion</option>
-                    <option value="tomato">Tomato</option>
-                    <option value="potato">Potato</option>
-                    <option value="ginger">Ginger</option>
-                  </select>
-                </td>
-              </tr>
-
-              <tr>
-                <th>
-                  <label>Vegetable_Price :</label>
-                </th>
-                <td>
-                  <input
-                    type="text"
-                    name="price"
-                    value={this.state.price}
-                    onChange={this.HandleChange}
-                  ></input>
-                </td>
-              </tr>
-
-              <tr>
-                <th>
-                  <label>Item In Stock:</label>
-                </th>
-                <td>
-                  <input
-                    type="text"
-                    name="inStock"
-                    value={this.state.inStock}
-                    onChange={this.HandleChange}
-                  ></input>
-                </td>
-              </tr>
-
-              <td></td>
+          <table
+            class="table-bordered"
+            style={{
+              marginTop: "120px",
+              marginLeft: "260px",
+              border: "2px solid blue",
+            }}
+          >
+            <tr>
+              <th>
+                <label>Vegetable_Name :</label>
+              </th>
+              {/* <td><input type="text" name='vegetableName' value={this.state.vegetableName} onChange={this.HandleChange} style={{width:'180px'}}/></td> */}
               <td>
-                <button type="submit" value="" onClick={this.SubmitData}>
-                  Submit
-                </button>
+                <select
+                  name="vegetableName"
+                  onChange={this.HandleChange}
+                  style={{ width: "180px" }}
+                >
+                  <option value="">Select</option>
+                  <option value="onion">Onion</option>
+                  <option value="tomato">Tomato</option>
+                  <option value="potato">Potato</option>
+                  <option value="ginger">Ginger</option>
+                </select>
               </td>
-            </table>
-          </form>
+            </tr>
+
+            <tr>
+              <th>
+                <label>Vegetable_Price :</label>
+              </th>
+              <td>
+                <input
+                  type="text"
+                  name="price"
+                  value={this.state.price}
+                  onChange={this.HandleChange}
+                ></input>
+              </td>
+            </tr>
+
+            <tr>
+              <th>
+                <label>Item In Stock:</label>
+              </th>
+              <td>
+                <input
+                  type="text"
+                  name="inStock"
+                  value={this.state.inStock}
+                  onChange={this.HandleChange}
+                ></input>
+              </td>
+            </tr>
+
+            <td></td>
+            <td>
+              <button type="submit" value="" onClick={this.SubmitData}>
+                Submit
+              </button>
+            </td>
+          </table>
         </span>
 
-        <span>
+        {/* <span>
           <center>
             <table
               class="table-bordered"
@@ -187,7 +185,7 @@ export class Admin extends Component {
               </tbody>
             </table>
           </center>
-        </span>
+        </span> */}
       </div>
     );
   }
