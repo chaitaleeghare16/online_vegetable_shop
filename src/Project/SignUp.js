@@ -113,7 +113,7 @@ export class SignUp extends Component {
 
       if (validForm == true) {
         const userDetails = {
-          isAdmin: true,
+          isAdmin: false,
           FirstName: this.state.FirstName,
           Email: this.state.Email,
           Password: this.state.Password,
