@@ -15,26 +15,25 @@ import Home from "./Home";
 //import HomePage from "./HomePage";
 import Product from "./Product";
 
-export class Header extends Component {
+export class Admin_User_Header extends Component {
   render() {
     return (
       <div>
         <link type="text/css" rel="stylesheet" href="Header.css" />
         <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-
         <div id="header">
+          <div>online Vegetable Shop</div>
           <img id="logo" src={logo} alt="logo"></img>
-          <span style={{ color: "white" }}>
-            <strong>Online Vegetable Shop</strong>
-          </span>
+
           <span id="home">
-            <Link className="link" to="/">
+            <Link className="link" to="/user">
               Home
             </Link>
           </span>
           <span id="homeicon">
             <FontAwesomeIcon className="homeicon" icon="home" size="1x" />
           </span>
+
           <span id="aboutus">
             <Link className="link" to="/aboutus">
               About_Us
@@ -43,6 +42,7 @@ export class Header extends Component {
           <span id="infoicon">
             <FontAwesomeIcon className="infoicon" icon="info" size="xs" />
           </span>
+
           <span id="contactus">
             <Link className="link" to="/contactus">
               Contact_Us
@@ -51,6 +51,7 @@ export class Header extends Component {
           <span id="phone">
             <FontAwesomeIcon icon="phone-square" size="1x" id="phone" />
           </span>
+
           <span id="myorder">
             <Link className="link" to="/myorder">
               MyOrder
@@ -59,6 +60,7 @@ export class Header extends Component {
           <span id="ordericon">
             <FontAwesomeIcon className="ordericon" icon="list-alt" size="1x" />
           </span>
+
           <span id="cart">
             <Link className="link" to="/cart">
               Cart
@@ -71,14 +73,14 @@ export class Header extends Component {
               size="1x"
             />
           </span>
-          {/* <span id='logout'>login</span>  */}
-          <span id="login">
+
+          <span id="logout">
             <Link
-              className="btn btn-primary"
-              style={{ width: "80px", marginTop: "-10px" }}
+              className="link"
               to="/login"
+              style={{ color: "red", marginTop: "10px" }}
             >
-              Login
+              <strong>LogOut</strong>
             </Link>
           </span>
         </div>
@@ -87,4 +89,4 @@ export class Header extends Component {
   }
 }
 
-export default Header;
+export default Admin_User_Header;

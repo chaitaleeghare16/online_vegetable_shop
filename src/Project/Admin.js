@@ -1,15 +1,19 @@
 import React, { Component } from "react";
 import "./Styles/admin.css";
+import Footer from "./Footer";
+import Admin_User_Header from "./Admin_User_Header";
 
 export class Admin extends Component {
   constructor(props) {
     super(props);
-
+    var adminlogin = sessionStorage.getItem("admintoken");
     this.state = {
       vegetableName: "",
       price: "",
       inStock: "",
       vegetabledetails: [],
+      adminname: "",
+      isadminlogin: adminlogin,
     };
   }
 
@@ -23,6 +27,9 @@ export class Admin extends Component {
     this.setState({
       vegetabledetails: JSON.parse(localStorage.getItem("vegetabledetails")),
     });
+
+    var data = JSON.parse(sessionStorage.getItem("admindata"));
+    this.setState({ adminname: data.fname });
   };
 
   SubmitData = (d) => {
@@ -53,79 +60,81 @@ export class Admin extends Component {
   };
 
   render() {
-    let adminName = this.props.match.params.name;
-    return (
-      <div>
+    if (this.state.isadminlogin) {
+      return (
         <div>
-          <h2>Welcome {adminName} (Admin)</h2>
-        </div>
-        <span>
-          <table
-            class="table-bordered"
-            style={{
-              marginTop: "120px",
-              marginLeft: "260px",
-              border: "2px solid blue",
-            }}
-          >
-            <tr>
-              <th>
-                <label>Vegetable_Name :</label>
-              </th>
-              {/* <td><input type="text" name='vegetableName' value={this.state.vegetableName} onChange={this.HandleChange} style={{width:'180px'}}/></td> */}
+          <div>
+            <Admin_User_Header />
+          </div>
+          <div>
+            <h2>Welcome {this.state.adminname} (Admin)</h2>
+          </div>
+          <span>
+            <table
+              class="table-bordered"
+              style={{
+                marginTop: "80px",
+                marginLeft: "260px",
+              }}
+            >
+              <tr>
+                <th>
+                  <label>Vegetable_Name :</label>
+                </th>
+                {/* <td><input type="text" name='vegetableName' value={this.state.vegetableName} onChange={this.HandleChange} style={{width:'180px'}}/></td> */}
+                <td>
+                  <select
+                    name="vegetableName"
+                    onChange={this.HandleChange}
+                    style={{ width: "180px" }}
+                  >
+                    <option value="">Select</option>
+                    <option value="onion">Onion</option>
+                    <option value="tomato">Tomato</option>
+                    <option value="potato">Potato</option>
+                    <option value="ginger">Ginger</option>
+                  </select>
+                </td>
+              </tr>
+
+              <tr>
+                <th>
+                  <label>Vegetable_Price :</label>
+                </th>
+                <td>
+                  <input
+                    type="text"
+                    name="price"
+                    value={this.state.price}
+                    onChange={this.HandleChange}
+                  ></input>
+                </td>
+              </tr>
+
+              <tr>
+                <th>
+                  <label>Item In Stock:</label>
+                </th>
+                <td>
+                  <input
+                    type="text"
+                    name="inStock"
+                    value={this.state.inStock}
+                    onChange={this.HandleChange}
+                  ></input>
+                </td>
+              </tr>
+
+              <td></td>
               <td>
-                <select
-                  name="vegetableName"
-                  onChange={this.HandleChange}
-                  style={{ width: "180px" }}
-                >
-                  <option value="">Select</option>
-                  <option value="onion">Onion</option>
-                  <option value="tomato">Tomato</option>
-                  <option value="potato">Potato</option>
-                  <option value="ginger">Ginger</option>
-                </select>
+                <button type="submit" value="" onClick={this.SubmitData}>
+                  Submit
+                </button>
               </td>
-            </tr>
+            </table>
+          </span>
 
-            <tr>
-              <th>
-                <label>Vegetable_Price :</label>
-              </th>
-              <td>
-                <input
-                  type="text"
-                  name="price"
-                  value={this.state.price}
-                  onChange={this.HandleChange}
-                ></input>
-              </td>
-            </tr>
-
-            <tr>
-              <th>
-                <label>Item In Stock:</label>
-              </th>
-              <td>
-                <input
-                  type="text"
-                  name="inStock"
-                  value={this.state.inStock}
-                  onChange={this.HandleChange}
-                ></input>
-              </td>
-            </tr>
-
-            <td></td>
-            <td>
-              <button type="submit" value="" onClick={this.SubmitData}>
-                Submit
-              </button>
-            </td>
-          </table>
-        </span>
-
-        {/* <span>
+          {/* <span>
           <center>
             <table
               class="table-bordered"
@@ -186,8 +195,12 @@ export class Admin extends Component {
             </table>
           </center>
         </span> */}
-      </div>
-    );
+          <div>
+            <Footer />
+          </div>
+        </div>
+      );
+    }
   }
 }
 

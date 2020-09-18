@@ -1,42 +1,53 @@
 #header {
-  position: -webkit-sticky;
-  position: sticky;
   top: 0;
   background-color: hsla(120, 100%, 25%, 0.726);
-
+  padding: -10px;
   font-size: 20px;
-  font-display: gh;
-  width: 100%;
+  width: 1330px;
+  height: 80px;
+  color: pink;
+}
+
+#usertype {
+  margin-left: 1000px;
+  color: red;
 }
 
 #logo {
-  width: 60px;
-  margin-top: -30px;
-  margin-left: 5px;
+  width: 120px;
+  margin-top: -2px;
+  margin-left: -90px;
+  height: 80px;
 }
 
 #home {
-  margin-left: 40px;
-  margin-top: 10px;
+  margin-left: 190px;
 }
 
 .homeicon {
   /* margin-left:1px; */
 
-  margin-top: 30px;
+  margin-top: 8px;
 }
 
 #aboutus {
-  margin-left: 40px;
+  margin-left: 20px;
 
   font-style: italic;
 }
 #infoicon {
-  margin-left: 6px;
+  margin-left: 5px;
+}
+
+#contactus {
+  margin-left: 20px;
+}
+#contactusicon {
+  margin-left: 8px;
 }
 
 #myorder {
-  margin-left: 40px;
+  margin-left: 20px;
 
   font-style: italic;
 }
@@ -44,12 +55,8 @@
   margin-left: 10px;
 }
 
-#contactus {
-  margin-left: 40px;
-}
-
 #cart {
-  margin-left: 400px;
+  margin-left: 40px;
 }
 
 #carticon {
@@ -58,6 +65,7 @@
 
 #login {
   margin-left: 65px;
+  margin-top: 20px;
   font-style: italic;
 }
 
@@ -70,4 +78,297 @@
 
 #logout {
   margin-left: 30px;
+}
+
+@media screen and (max-width: 1290px) {
+  #header {
+    width: 100%;
+    height: 80px;
+  }
+  #logo {
+    width: 60px;
+    margin-top: -15px;
+    margin-left: -30px;
+  }
+  #usertype {
+    margin-left: 800px;
+  }
+  #home {
+    margin-left: 20px;
+    margin-top: 10px;
+  }
+
+  .homeicon {
+    /* margin-left:1px; */
+
+    margin-top: 30px;
+  }
+
+  #aboutus {
+    margin-left: 20px;
+
+    font-style: italic;
+  }
+  #infoicon {
+    margin-left: 3px;
+  }
+
+  #myorder {
+    margin-left: 20px;
+
+    font-style: italic;
+  }
+  #ordericon {
+    margin-left: 5px;
+  }
+
+  #contactus {
+    margin-left: 20px;
+  }
+
+  #cart {
+    margin-left: 70px;
+  }
+
+  #carticon {
+    margin-left: 5px;
+  }
+
+  .link {
+    color: black;
+  }
+  #container {
+    color: "pink";
+  }
+
+  #logout {
+    margin-left: 30px;
+  }
+}
+
+@media screen and (max-width: 1190px) {
+  #header {
+    width: 100%;
+    height: 80px;
+  }
+
+  #usertype {
+    margin-left: 600px;
+  }
+  #logo {
+    width: 90px;
+    margin-top: -15px;
+    margin-left: -50px;
+  }
+
+  #home {
+    margin-left: 20px;
+    margin-top: 10px;
+  }
+
+  .homeicon {
+    /* margin-left:1px; */
+
+    margin-top: 30px;
+  }
+
+  #aboutus {
+    margin-left: 20px;
+
+    font-style: italic;
+  }
+  #infoicon {
+    margin-left: 3px;
+  }
+
+  #myorder {
+    margin-left: 20px;
+
+    font-style: italic;
+  }
+  #ordericon {
+    margin-left: 5px;
+  }
+
+  #contactus {
+    margin-left: 20px;
+  }
+
+  #cart {
+    margin-left: 100px;
+  }
+
+  #carticon {
+    margin-left: 5px;
+  }
+
+  #login {
+    margin-left: 35px;
+    font-style: italic;
+  }
+
+  .link {
+    color: black;
+  }
+  #container {
+    color: "pink";
+  }
+
+  #logout {
+    margin-left: 30px;
+  }
+}
+
+@media screen and (max-width: 1090px) {
+  #header {
+    width: 100%;
+    height: 60px;
+  }
+
+  #usertype {
+    margin-left: 400px;
+  }
+  #logo {
+    width: 80px;
+    margin-top: -15px;
+    margin-left: -30px;
+    height: 40px;
+  }
+
+  #home {
+    margin-left: 20px;
+    margin-top: 10px;
+  }
+
+  .homeicon {
+    /* margin-left:1px; */
+
+    margin-top: 30px;
+  }
+
+  #aboutus {
+    margin-left: 20px;
+
+    font-style: italic;
+  }
+  #infoicon {
+    margin-left: 3px;
+  }
+
+  #myorder {
+    margin-left: 20px;
+
+    font-style: italic;
+  }
+  #ordericon {
+    margin-left: 5px;
+  }
+
+  #contactus {
+    margin-left: 20px;
+  }
+
+  #cart {
+    margin-left: 10px;
+  }
+
+  #carticon {
+    margin-left: 5px;
+  }
+
+  #login {
+    margin-left: 15px;
+    font-style: italic;
+  }
+
+  .link {
+    color: black;
+  }
+  #container {
+    color: "pink";
+  }
+
+  #logout {
+    margin-left: 30px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  #header {
+    width: 100%;
+    height: 100px;
+  }
+
+  #usertype {
+    margin-left: 300px;
+  }
+  #logo {
+    width: 80px;
+    margin-top: -15px;
+    margin-left: -10px;
+  }
+
+  #home {
+    margin-left: 5px;
+    margin-top: 10px;
+    font-size: 15px;
+  }
+
+  .homeicon {
+    /* margin-left:1px; */
+
+    margin-top: 30px;
+  }
+
+  #aboutus {
+    margin-left: 5px;
+    font-size: 15px;
+
+    font-style: italic;
+  }
+  #infoicon {
+    margin-left: 3px;
+  }
+
+  #myorder {
+    margin-left: 5px;
+    font-size: 15px;
+
+    font-style: italic;
+  }
+  #ordericon {
+    margin-left: 5px;
+  }
+
+  #contactus {
+    margin-left: 5px;
+    font-size: 15px;
+  }
+
+  #cart {
+    margin-left: 5px;
+    font-size: 15px;
+  }
+
+  #carticon {
+    margin-left: 1px;
+  }
+
+  #login {
+    margin-left: 5px;
+    font-style: italic;
+    font-size: 15px;
+  }
+
+  .link {
+    color: black;
+  }
+  #container {
+    color: "pink";
+  }
+
+  #logout {
+    margin-left: 30px;
+    font-size: 15px;
+  }
 }

@@ -15,23 +15,38 @@ import Home from "./Project/Home";
 import Footer from "./Project/Footer";
 import HomePage from "./Project/HomePage";
 import ContactUs from "./Project/ContactUs";
+import ReactNotification from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
+
+import Noty from "noty";
+import "../node_modules/noty/lib/noty.css";
+import "../node_modules/noty/lib/themes/bootstrap-v4.css";
+
+import "./Project/Styles/Footer.css";
+import "animate.css";
 
 function App() {
   return (
-    <div className="App">
-      <Switch>
-        <Route path="/cart" exact component={Cart}></Route>
-        <Route path="/aboutus" exact component={AboutUs}></Route>
-        <Route path="/contactus" exact component={ContactUs}></Route>
-        <Route path="/myorder" exact component={MyOrder}></Route>
-        <Route path="/home/:name" exact component={Home}></Route>
-        <Route path="/admin/:name" exact component={Admin}></Route>
+    <div>
+      <ReactNotification />
+      <div className="App">
+        <Switch>
+          <Route path="/cart" exact component={Cart}></Route>
+          <Route path="/aboutus" exact component={AboutUs}></Route>
+          <Route path="/contactus" exact component={ContactUs}></Route>
+          <Route path="/myorder" component={MyOrder}></Route>
+          <Route path="/user" exact component={Home}></Route>
+          <Route path="/admin" component={Admin}></Route>
 
-        <Route path="/login" exact component={LogIn} />
-        <Route path="/signup" exact component={SignUp} />
+          <Route path="/login" exact component={LogIn} />
+          <Route path="/signup" exact component={SignUp} />
 
-        <Route path="/" exact component={Home} />
-      </Switch>
+          <Route path="/" exact component={HomePage} />
+        </Switch>
+      </div>
+      {/* <div>
+        <Footer />
+      </div> */}
     </div>
   );
 }

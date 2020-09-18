@@ -1,14 +1,24 @@
 import React, { Component } from "react";
 import Cart from "./Cart";
+import tomato from "../tomato.jpeg";
+import ginger from "../ginger.jpeg";
+import potato from "../potato.jpeg";
+import logo from "../logo.jpg";
+import onion from "../onion.jpeg";
 
 import { Link } from "react-router-dom";
-import Home from "./Home";
-
+import Footer from "./Footer";
+import Header from "./Header";
+import "./Styles/Header.css";
+import "./Styles/homeFooter.css";
+import { store } from "react-notifications-component";
+import Noty from "noty";
+const img_path = [tomato, onion, potato, ginger];
 const products = [
   {
     id: 1,
     name: "Tomato",
-    img: "tomato.jpeg",
+    img: 0,
     price: 19,
     unit: "kg",
     stock: "In Stock",
@@ -17,7 +27,7 @@ const products = [
   {
     id: 2,
     name: "Onion",
-    img: "onion.jpeg",
+    img: 1,
     price: 40,
     unit: "kg",
     stock: "In Stock",
@@ -26,7 +36,7 @@ const products = [
   {
     id: 3,
     name: "Potato",
-    img: "potato.jpeg",
+    img: 2,
     price: 60,
     unit: "kg",
     stock: "In Stock",
@@ -36,7 +46,7 @@ const products = [
   {
     id: 4,
     name: "Ginger",
-    img: "ginger.jpeg",
+    img: 3,
     price: 30,
     unit: "gm",
     stock: "In Stock",
@@ -44,7 +54,11 @@ const products = [
   },
 ];
 
-export class HomePage extends Component {
+export class Home extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   calculatTotalAmount() {
     var sum = 0;
     var cart_items = JSON.parse(localStorage.getItem("cart"));
@@ -54,51 +68,37 @@ export class HomePage extends Component {
     localStorage.setItem("total", JSON.stringify(sum));
   }
 
-  handleAddData = (product) => {
-    console.log(product);
-    const id = product.id;
-    const name = product.name;
-    const img = product.img;
-    const price = product.price;
-    const unit = product.unit;
-    const count = product.count;
+  handleAddData = (i) => {
+    // console.log(nameofuser);
 
-    var obj = { id, name, img, price, unit, count };
+    //document.getElementById("msg").innerHTML = "*** please login first ***";
+    // store.addNotification({
+    //   title: "",
+    //   message: "Please Login First",
+    //   type: "warning",
+    //   insert: "top",
+    //   container: "top-right",
+    //   animationIn: ["animated", "fadeIn"],
+    //   animationOut: ["animated", "fadeOut"],
+    //   dismiss: {
+    //     duration: 1000,
+    //     onScreen: true,
+    //   },
+    //   id: i,
+    // });
 
-    var flag = 0;
-    var matchId = 0;
-    var i = 0;
-
-    var arr1 = JSON.parse(localStorage.getItem("cart"));
-    if (arr1 == null) {
-      // arr1.push(obj)
-      flag = 0;
-    } else {
-      arr1.map((item, index) => {
-        if (id === item.id && name === item.name) {
-          console.log(id + "" + item.id);
-          flag = 1;
-          matchId = item.id;
-          i = index;
-        }
-      });
-    }
-    if (flag === 0) {
-      var cart_data = JSON.parse(localStorage.getItem("cart"));
-      if (cart_data == null) {
-        cart_data = [];
-      }
-      obj.count += 1;
-      cart_data.push(obj);
-      localStorage.setItem("cart", JSON.stringify(cart_data));
-      alert("added into cart");
-    }
-
-    if (flag == 1) {
-      alert("already into cart..go to cart");
-    }
-
-    this.calculatTotalAmount();
+    let n = new Noty({
+      type: "success  ",
+      layout: "topRight",
+      text: "You have to login first",
+      theme: "bootstrap-v4",
+      animationIn: ["animated", "fadeIn"],
+      buttons: [
+        Noty.button("ok", "btn btn-primary", () => {
+          n.close();
+        }),
+      ],
+    }).show();
   };
 
   // intialize cart and product variable
@@ -117,25 +117,22 @@ export class HomePage extends Component {
 
     localStorage.setItem("total", JSON.stringify(total));
   }
-
   render() {
-    // let Username_Of_LoggedIn_User_Is = this.props.match.params.name;
     var a = JSON.parse(localStorage.getItem("product"));
     if (a == null) {
       this.componentDidMount();
     }
 
-    let Username_Of_LoggedIn_User_Is = this.props.match.params.name;
-
     return (
       <div>
-        <div style={{ color: "red", fontSize: "40px" }}>
-          Welcome {Username_Of_LoggedIn_User_Is} (user)
+        <div>
+          <Header />
         </div>
+        <div id="msg" style={{ color: "red", fontSize: "30px" }}></div>
         {JSON.parse(localStorage.getItem("product")).map((items, index) => (
           <ul class="list pl0 mt0 measure center">
             <li class="flex items-center lh-copy pa3 ph0-l bb b--black-10">
-              <img class="w3 h3 w4-ns h4-ns br-100" src={items.img} />
+              <img class="w3 h3 w4-ns h4-ns br-100" src={img_path[index]} />
               <div class="pl3 flex-auto">
                 <span class="f6 db black-70">{items.name}</span>
                 <span class="f6 db black-90">
@@ -147,7 +144,7 @@ export class HomePage extends Component {
                 <button
                   className="btn btn-danger"
                   value={index}
-                  onClick={() => this.handleAddData(items)}
+                  onClick={() => this.handleAddData(index)}
                 >
                   ADD to cart
                 </button>
@@ -155,9 +152,13 @@ export class HomePage extends Component {
             </li>
           </ul>
         ))}
+
+        <div>
+          <Footer />
+        </div>
       </div>
     );
   }
 }
 
-export default HomePage;
+export default Home;
